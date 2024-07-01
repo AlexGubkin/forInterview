@@ -1,0 +1,132 @@
+\documentclass[10pt,xcolor={dvipsnames,table},aspectratio=169]{beamer}
+
+%\usetheme{Boadilla}
+%\usecolortheme{wolverine}
+\usecolortheme{dolphin}
+%\setbeamercovered{transparent}
+%\setbeamercolor{block body}{bg=yellow}
+
+\addtobeamertemplate{navigation symbols}{}{%
+	\usebeamerfont{footline}%
+	\usebeamercolor[fg]{footline}%
+	\hspace{1em}%
+	\insertframenumber/\inserttotalframenumber
+}
+
+\usepackage{fontspec}
+\defaultfontfeatures{Renderer=Basic,Ligatures={TeX}}
+%    \setmainfont{CMU Serif}
+%    \setsansfont{CMU Sans Serif}
+\setmainfont{DejaVu Serif}
+\setsansfont{CMU Sans Serif}
+%    \setmonofont{CMU Typewriter Text}
+\usepackage{unicode-math}
+%    \setmathfont{Latin Modern Math}
+%    \setmathfont{Libertinus Math}
+%    \setmathfont{TeX Gyre DejaVu Math}
+\setmathfont{STIX Two Math}
+\usepackage[english,russian]{babel}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{animate}
+\usepackage{ragged2e}
+\usepackage{color}
+\usepackage{pgfplots}
+\usepackage{subcaption}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{svg}
+
+\usepackage{tikz}
+%\usetikzlibrary{
+	%	mindmap,
+	%	arrows, % стрелки
+	%	shapes.misc, % фигуры
+	%	chains, % цепочки
+	%	positioning, % позиционирование элементов
+	%	scopes, % создание дополнительных веток
+	%	shadows % тени
+	%}
+
+\graphicspath{{pic/}{figs/}}
+
+\author[Губкин]{А.С.~Губкин}
+
+\title[Расчёт коэффициента теплоотдачи прямого канала прямоугольного сечения]{Расчёт коэффициента теплоотдачи прямого канала прямоугольного сечения}
+
+\date[Тюмень 2024]{Июль, 2024 г.}
+
+\begin{document}
+    \frame{\titlepage}
+
+    %SLIDE #
+    \begin{frame}{}
+
+        %\transdissolve[duration=0.1]
+        \justifying
+        \normalsize
+
+        \frametitle{Задача}
+
+        Определить коэффициент теплоотдачи $ \alpha $ прямого канала длиной $ l~=~400$~мм прямоугольного сечения ширины $ w~=~15 $~мм и высоты $ h~=~8 $~мм с толщиной стенки $ \delta~=~1 $~мм при протекании через него диоксида углерода. Скорость и температура газа на входе в канал соответственно $ U_{inlet}~=~20 $~м/с, $ T_{inlet}~=~423.15 $~К. Давление на выходе из канала $ p_{outlet}~=~4 $~МПа. Канал обменевается энергией с внешней средой при температуре $ T_{ext}~=~723.15 $~К с коэффициентом теплоотдачи $ \alpha_{ext}~=~1000 $~Вт/м$^2$К.
+
+    \end{frame}{}
+
+    %SLIDE #
+    \begin{frame}{}
+
+        %\transdissolve[duration=0.1]
+        \justifying
+        \normalsize
+
+        \frametitle{Фазовая диаграмма $CO_{2}$}
+
+        \begin{minipage}[b]{0.49\linewidth}
+            Из фазовой диаграммы диоксида углерода видно, что при данном режиме фазовые переходы отсутствуют. Течение будет происходить в газовой фазе. \\
+
+            Параметры критической точки: $ p_{c}~=~7.3773 $~МПа, $ T_{c}~=~304.128 $~К.
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.49\linewidth}
+            \begin{figure}
+                \centering
+                \includesvg[scale=0.4]{Carbon_dioxide_pressure-temperature_phase_diagram}
+            \end{figure}
+        \end{minipage}
+
+    \end{frame}{}
+
+    %SLIDE #
+    \begin{frame}{}
+
+        %\transdissolve[duration=0.1]
+        \justifying
+        \normalsize
+
+        \frametitle{Математическая модель}
+
+        \[
+            \begin{aligned}
+                &\begin{aligned}
+                    &\symbf{\nabla} \cdot \symbf{\rho u} = 0 \\
+                    &\symbf{\nabla} \cdot \rho \symbf{u} \otimes \symbf{u}
+                    =
+                    - \symbf{\nabla} p
+                    + \symbf{\nabla} \cdot \symbf{\tau}
+                \end{aligned} \quad \symbf{x} \in \Omega_{flow} \\
+                &\begin{aligned}
+                    &\symbf{u} = 0 \\
+                    \symbf{\nabla} &p = 0
+                \end{aligned} \quad \symbf{x} \in \partial \Omega_{wall} \\
+                &\begin{aligned}
+                    \symbf{\nabla} &\symbf{u} = 0 \\
+                    &p = p_{1}
+                \end{aligned} \quad \symbf{x} \in \partial \Omega_{in} \\
+                &\begin{aligned}
+                    \symbf{\nabla} &\symbf{u} = 0 \\
+                    &p = p_{2}
+                \end{aligned} \quad \symbf{x} \in \partial \Omega_{out}
+            \end{aligned}
+        \]
+
+    \end{frame}{}
+\end{document}
