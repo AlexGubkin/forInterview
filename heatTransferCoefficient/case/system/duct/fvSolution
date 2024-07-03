@@ -56,7 +56,7 @@ solvers
 PIMPLE
 {
     nCorrectors     2;
-    nNonOrthogonalCorrectors 1;
+    nNonOrthogonalCorrectors 2;
     pRefCell        0;
     pRefValue       0;
 }

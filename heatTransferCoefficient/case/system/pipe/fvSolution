@@ -9,29 +9,38 @@ FoamFile
 {
     format      ascii;
     class       dictionary;
-    object      physicalProperties;
+    object      fvSolution;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-thermoType          constSolidThermo;
-
-rho
+solvers
 {
-    type        uniform;
-    value       8940;
+    e
+    {
+        solver           PCG;
+        preconditioner   DIC;
+        tolerance        1e-06;
+        relTol           0.1;
+    }
+
+    eFinal
+    {
+        $e;
+        relTol           0;
+    }
 }
 
-Cv
+PIMPLE
 {
-    type        uniform;
-    value       385;
+    nNonOrthogonalCorrectors 2;
 }
 
-kappa
+relaxationFactors
 {
-    type        uniform;
-    value       380;
+    equations
+    {
+        ".*" 1;
+    }
 }
-
 
 // ************************************************************************* //

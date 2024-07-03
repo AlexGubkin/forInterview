@@ -8,35 +8,30 @@
 FoamFile
 {
     format      ascii;
-    class       volScalarField;
-    object      nut;
+    class       dictionary;
+    object      physicalProperties;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 2 -1 0 0 0 0];
+thermoType          constSolidThermo;
 
-internalField   uniform 0;
-
-boundaryField
+rho
 {
-    "(inlet|outlet)"
-    {
-        type            calculated;
-        value           uniform 0;
-    }
-
-    topAndBottom
-    {
-        type            zeroGradient;
-    }
-
-    wall
-    {
-        type            nutkWallFunction;
-        value           uniform 0;
-    }
-
-    #includeEtc "caseDicts/setConstraintTypes"
+    type        uniform;
+    value       8940;
 }
+
+Cv
+{
+    type        uniform;
+    value       385;
+}
+
+kappa
+{
+    type        uniform;
+    value       1000;
+}
+
 
 // ************************************************************************* //

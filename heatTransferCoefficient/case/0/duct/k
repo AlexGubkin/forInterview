@@ -9,21 +9,41 @@ FoamFile
 {
     format      ascii;
     class       volScalarField;
-    object      T;
+    object      k;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [ 0 0 0 1 0 0 0 ];
+kInlet          0.02;
+intensityInlet  0.01;
 
-internalField   uniform 297;
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform 0.02;
 
 boundaryField
 {
-    wall
+    inlet
     {
-        type            coupledTemperature;
+        type            turbulentIntensityKineticEnergyInlet;
+        intensity       0.01;
         value           $internalField;
     }
+
+    outlet
+    {
+        type            inletOutlet;
+        inletValue      $internalField;
+        value           $internalField;
+    }
+
+    wall
+    {
+        type            kqRWallFunction;
+        value           $internalField;
+    }
+
+    #includeEtc "caseDicts/setConstraintTypes"
 }
+
 
 // ************************************************************************* //

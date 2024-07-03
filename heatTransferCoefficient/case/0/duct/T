@@ -8,39 +8,38 @@
 FoamFile
 {
     format      ascii;
-    class       dictionary;
-    object      fvSolution;
+    class       volScalarField;
+    object      T;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-solvers
+dimensions      [0 0 0 1 0 0 0];
+
+internalField   uniform 423.15;
+
+boundaryField
 {
-    e
+    inlet
     {
-        solver           PCG;
-        preconditioner   DIC;
-        tolerance        1e-06;
-        relTol           0.1;
+        type            fixedValue;
+        value           $internalField;
     }
 
-    eFinal
+    outlet
     {
-        $e;
-        relTol           0;
+        type            inletOutlet;
+        inletValue      $internalField;
+        value           $internalField;
     }
+
+    wall
+    {
+        type            coupledTemperature;
+        value           $internalField;
+    }
+
+    #includeEtc "caseDicts/setConstraintTypes"
 }
 
-PIMPLE
-{
-    nNonOrthogonalCorrectors 0;
-}
-
-relaxationFactors
-{
-    equations
-    {
-        ".*" 1;
-    }
-}
 
 // ************************************************************************* //

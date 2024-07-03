@@ -9,23 +9,21 @@ FoamFile
 {
     format      ascii;
     class       volScalarField;
-    object      k;
+    location    "0";
+    object      epsilon;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-kInlet          0.02;
-intensityInlet  0.01;
+dimensions      [0 2 -3 0 0 0 0];
 
-dimensions      [0 2 -2 0 0 0 0];
-
-internalField   uniform 0.02;
+internalField   uniform 0.54;
 
 boundaryField
 {
     inlet
     {
-        type            turbulentIntensityKineticEnergyInlet;
-        intensity       0.01;
+        type            turbulentMixingLengthDissipationRateInlet;
+        mixingLength    0.0035;
         value           $internalField;
     }
 
@@ -36,14 +34,9 @@ boundaryField
         value           $internalField;
     }
 
-    topAndBottom
-    {
-        type            zeroGradient;
-    }
-
     wall
     {
-        type            kqRWallFunction;
+        type            epsilonWallFunction;
         value           $internalField;
     }
 

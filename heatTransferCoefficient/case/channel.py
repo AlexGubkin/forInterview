@@ -131,22 +131,22 @@ geompy.UnionIDs(outlet, outletIDs)
 
 geompy.addToStudyInFather(pipeWithDuct, outlet, 'outlet')
 
-ductWallIDs =\
-    geompy.GetShapesOnShapeIDs(
-        geompy.MakeTranslation(
-            geompy.MakeBoxDXDYDZ(channelSize[0], channelSize[1], channelSize[2]),
-            -0.5*channelSize[0], -0.5*channelSize[1], 0
-        ),
-        pipeWithDuct,
-        geompy.ShapeType["FACE"],
-        GEOM.ST_ON
-    )
-
-ductWall = geompy.CreateGroup(pipeWithDuct, geompy.ShapeType["FACE"])
-geompy.UnionIDs(ductWall, ductWallIDs)
-ductWall = geompy.CutListOfGroups([ductWall], [inlet, outlet])
-
-geompy.addToStudyInFather(pipeWithDuct, ductWall, 'ductWall')
+# ductWallIDs =\
+#     geompy.GetShapesOnShapeIDs(
+#         geompy.MakeTranslation(
+#             geompy.MakeBoxDXDYDZ(channelSize[0], channelSize[1], channelSize[2]),
+#             -0.5*channelSize[0], -0.5*channelSize[1], 0
+#         ),
+#         pipeWithDuct,
+#         geompy.ShapeType["FACE"],
+#         GEOM.ST_ON
+#     )
+#
+# ductWall = geompy.CreateGroup(pipeWithDuct, geompy.ShapeType["FACE"])
+# geompy.UnionIDs(ductWall, ductWallIDs)
+# ductWall = geompy.CutListOfGroups([ductWall], [inlet, outlet])
+#
+# geompy.addToStudyInFather(pipeWithDuct, ductWall, 'ductWall')
 
 inletEndFaceIDs =\
     geompy.GetShapesOnShapeIDs(
@@ -219,7 +219,7 @@ duct_1 = pipeWithDuctMesh.GroupOnGeom(duct,'duct',SMESH.VOLUME)
 pipe_1 = pipeWithDuctMesh.GroupOnGeom(pipe,'pipe',SMESH.VOLUME)
 inlet_1 = pipeWithDuctMesh.GroupOnGeom(inlet,'inlet',SMESH.FACE)
 outlet_1 = pipeWithDuctMesh.GroupOnGeom(outlet,'outlet',SMESH.FACE)
-ductWall_1 = pipeWithDuctMesh.GroupOnGeom(ductWall,'ductWall',SMESH.FACE)
+# ductWall_1 = pipeWithDuctMesh.GroupOnGeom(ductWall,'ductWall',SMESH.FACE)
 inletEndFace_1 = pipeWithDuctMesh.GroupOnGeom(inletEndFace,'inletEndFace',SMESH.FACE)
 outleteEndFace_1 = pipeWithDuctMesh.GroupOnGeom(outleteEndFace,'outleteEndFace',SMESH.FACE)
 outsideWall_1 = pipeWithDuctMesh.GroupOnGeom(outsideWall,'outsideWall',SMESH.FACE)
@@ -259,7 +259,7 @@ NETGEN_2D_Parameters_1.SetCheckChartBoundary( 0 )
 
 isDone = pipeWithDuctMesh.Compute()
 
-[ duct_1, pipe_1, inlet_1, outlet_1, ductWall_1, inletEndFace_1, outleteEndFace_1, outsideWall_1 ] = pipeWithDuctMesh.GetGroups()
+[ duct_1, pipe_1, inlet_1, outlet_1, inletEndFace_1, outleteEndFace_1, outsideWall_1 ] = pipeWithDuctMesh.GetGroups()
 
 try:
     pipeWithDuctMesh.ExportUNV(r'/home/alex/forInterview/heatTransferCoefficient/case/pipeWithDuct.unv', 0)

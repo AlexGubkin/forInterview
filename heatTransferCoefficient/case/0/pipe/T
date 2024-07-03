@@ -9,42 +9,45 @@ FoamFile
 {
     format      ascii;
     class       volScalarField;
-    object      omega;
+    object      T;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [0 0 -1 0 0 0 0];
+dimensions      [ 0 0 0 1 0 0 0 ];
 
-internalField   uniform 10;
+internalField   uniform 723.15;
 
 boundaryField
 {
-    inlet
-    {
-        type            turbulentMixingLengthFrequencyInlet;
-        mixingLength    0.0035;
-        value           $internalField;
-    }
-
-    outlet
-    {
-        type            inletOutlet;
-        inletValue      $internalField;
-        value           $internalField;
-    }
-
-    topAndBottom
+    inletEndFace
     {
         type            zeroGradient;
+        value           $internalField;
+    }
+
+    outleteEndFace
+    {
+        type            zeroGradient;
+        value           $internalField;
+    }
+
+    outsideWall
+    {
+        type            externalTemperature;
+
+        Ta              constant 723.15;
+        h               uniform 1000.0;
+        // thicknessLayers (0.1 0.2 0.3 0.4);
+        // kappaLayers     (1 2 3 4);
+
+        value           $internalField;
     }
 
     wall
     {
-        type            omegaWallFunction;
+        type            coupledTemperature;
         value           $internalField;
     }
-
-    #includeEtc "caseDicts/setConstraintTypes"
 }
 
 // ************************************************************************* //
