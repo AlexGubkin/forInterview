@@ -14,17 +14,17 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-laminar
-{
-    model           Fourier;
-}
-
-// RAS
+// laminar
 // {
-//     model           eddyDiffusivity;
-//
-//     Prt             0.85;
+//     model           Fourier;
 // }
+
+RAS
+{
+    model           eddyDiffusivity;
+
+    Prt             0.85;
+}
 
 
 // ************************************************************************* //

@@ -31,7 +31,7 @@ solvers
         maxIter          100;
     }
 
-    "(U|e|k|omega)"
+    "(U|e|k|epsilon|omega)"
     {
         solver          PBiCGStab;
         preconditioner  DILU;
@@ -46,7 +46,7 @@ solvers
         relTol         0;
     }
 
-    "(U|e|k|omega)Final"
+    "(U|e|k|epsilon|omega)Final"
     {
         $U;
         relTol          0;

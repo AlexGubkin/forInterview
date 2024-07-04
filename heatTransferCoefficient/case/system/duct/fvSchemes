@@ -22,10 +22,10 @@ gradSchemes
 {
     default         Gauss linear;
 
-    // limited         cellLimited Gauss linear 1;
-    // grad(U)         $limited;
-    // grad(k)         $limited;
-    // grad(omega)     $limited;
+    limited         cellLimited Gauss linear 1;
+    grad(U)         $limited;
+    grad(k)         $limited;
+    grad(omega)     $limited;
 }
 
 divSchemes
@@ -39,6 +39,7 @@ divSchemes
     turbulence          Gauss upwind;
     div(phi,k)          $turbulence;
     div(phi,omega)      $turbulence;
+    div(phi,epsilon)    $turbulence;
     div(phi,e)          $turbulence;
     div(phi,K)          $turbulence;
     div(phi,(p|rho))    $turbulence;

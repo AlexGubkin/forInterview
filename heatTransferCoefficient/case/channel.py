@@ -239,7 +239,7 @@ NETGEN_2D_Parameters_1.SetUseDelauney( 0 )
 NETGEN_2D_Parameters_1.SetQuadAllowed( 1 )
 NETGEN_2D_Parameters_1.SetWorstElemMeasure( 32767 )
 NETGEN_2D_Parameters_1.SetCheckChartBoundary( 0 )
-Viscous_Layers_2D_1 = NETGEN_1D_2D.ViscousLayers2D(0.1,2,1.1,[],1)
+Viscous_Layers_2D_1 = NETGEN_1D_2D.ViscousLayers2D(0.5,5,1.1,[],1)
 
 NETGEN_1D_2D_1 = pipeWithDuctMesh.Triangle(algo=smeshBuilder.NETGEN_1D2D,geom=inletEndFace)
 NETGEN_2D_Parameters_2 = NETGEN_1D_2D_1.Parameters()
