@@ -1,4 +1,4 @@
- /*--------------------------------*- C++ -*----------------------------------*\
+/*--------------------------------*- C++ -*----------------------------------*\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
    \\    /   O peration     | Website:  https://openfoam.org
@@ -25,7 +25,7 @@ solvers
         solver           GAMG;
         smoother         GaussSeidel;
 
-        tolerance        1e-7;
+        tolerance        1e-8;
         relTol           0.01;
 
         maxIter          100;
@@ -36,8 +36,8 @@ solvers
         solver          PBiCGStab;
         preconditioner  DILU;
 
-        tolerance       1e-6;
-        relTol          0.1;
+        tolerance       1e-8;
+        relTol          0;
     }
 
     p_rghFinal
@@ -65,7 +65,12 @@ relaxationFactors
 {
     equations
     {
-        ".*" 1;
+        ".*"    0.7;
+    }
+    fields
+    {
+        p_rgh   0.5;
+        p       0.5;
     }
 }
 

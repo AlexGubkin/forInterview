@@ -213,7 +213,7 @@ smesh = smeshBuilder.New()
 pipeWithDuctMesh = smesh.Mesh(pipeWithDuct,'pipeWithDuctMesh')
 Prism_3D = pipeWithDuctMesh.Prism()
 Regular_1D = pipeWithDuctMesh.Segment()
-Number_of_Segments_1 = Regular_1D.NumberOfSegments(100)
+Number_of_Segments_1 = Regular_1D.NumberOfSegments(200)
 
 duct_1 = pipeWithDuctMesh.GroupOnGeom(duct,'duct',SMESH.VOLUME)
 pipe_1 = pipeWithDuctMesh.GroupOnGeom(pipe,'pipe',SMESH.VOLUME)
@@ -239,7 +239,7 @@ NETGEN_2D_Parameters_1.SetUseDelauney( 0 )
 NETGEN_2D_Parameters_1.SetQuadAllowed( 1 )
 NETGEN_2D_Parameters_1.SetWorstElemMeasure( 32767 )
 NETGEN_2D_Parameters_1.SetCheckChartBoundary( 0 )
-Viscous_Layers_2D_1 = NETGEN_1D_2D.ViscousLayers2D(0.5,5,1.1,[],1)
+Viscous_Layers_2D_1 = NETGEN_1D_2D.ViscousLayers2D(0.1,2,1.1,[],1)
 
 NETGEN_1D_2D_1 = pipeWithDuctMesh.Triangle(algo=smeshBuilder.NETGEN_1D2D,geom=inletEndFace)
 NETGEN_2D_Parameters_2 = NETGEN_1D_2D_1.Parameters()
@@ -259,7 +259,7 @@ NETGEN_2D_Parameters_1.SetCheckChartBoundary( 0 )
 
 isDone = pipeWithDuctMesh.Compute()
 
-[ duct_1, pipe_1, inlet_1, outlet_1, inletEndFace_1, outleteEndFace_1, outsideWall_1 ] = pipeWithDuctMesh.GetGroups()
+[duct_1, pipe_1, inlet_1, outlet_1, inletEndFace_1, outleteEndFace_1, outsideWall_1] = pipeWithDuctMesh.GetGroups()
 
 try:
     pipeWithDuctMesh.ExportUNV(r'/home/alex/forInterview/heatTransferCoefficient/case/pipeWithDuct.unv', 0)

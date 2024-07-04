@@ -13,18 +13,26 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-Uinlet          (0 0 20);
+// Uinlet          (0 0 20);
 
 dimensions      [0 1 -1 0 0 0 0];
 
-internalField   uniform (0 0 0);
+internalField   uniform (0 0 15);
 
 boundaryField
 {
     inlet
     {
-        type            fixedValue;
-        value           uniform $Uinlet;
+        // type            fixedValue;
+        // value           uniform $Uinlet;
+        type            flowRateInletVelocity;
+        meanVelocity    20;
+        // meanVelocity    table
+        // (
+        //     (  0   0.0)
+        //     (100  20.0)
+        // );
+        profile         turbulentBL;
     }
 
     outlet
