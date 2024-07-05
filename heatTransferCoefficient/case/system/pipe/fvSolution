@@ -32,7 +32,7 @@ solvers
 
 PIMPLE
 {
-    nNonOrthogonalCorrectors 2;
+    nNonOrthogonalCorrectors 1;
 }
 
 relaxationFactors

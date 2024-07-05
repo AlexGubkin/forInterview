@@ -34,7 +34,7 @@ boundaryField
         value           $internalField;
     }
 
-    wall
+    ".*"
     {
         type            epsilonWallFunction;
         value           $internalField;

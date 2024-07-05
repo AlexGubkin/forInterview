@@ -15,7 +15,7 @@ FoamFile
 
 dimensions      [ 0 0 0 1 0 0 0 ];
 
-internalField   uniform 723.15;
+internalField   uniform 423.15;
 
 boundaryField
 {
@@ -43,7 +43,7 @@ boundaryField
         value           $internalField;
     }
 
-    wall
+    pipe_to_duct
     {
         type            coupledTemperature;
         value           $internalField;

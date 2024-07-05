@@ -31,7 +31,7 @@ solvers
         maxIter          100;
     }
 
-    "(U|e|k|epsilon|omega)"
+    "(U|h|e|k|epsilon|omega)"
     {
         solver          PBiCGStab;
         preconditioner  DILU;
@@ -46,7 +46,7 @@ solvers
         relTol         0;
     }
 
-    "(U|e|k|epsilon|omega)Final"
+    "(U|h|e|k|epsilon|omega)Final"
     {
         $U;
         relTol          0;
@@ -57,20 +57,24 @@ PIMPLE
 {
     nCorrectors     1;
     nNonOrthogonalCorrectors 2;
-    pRefCell        0;
-    pRefValue       0;
+//     pRefCell        0;
+//     pRefValue       0;
 }
 
 relaxationFactors
 {
-    equations
-    {
-        ".*"    0.5;
-    }
     fields
     {
-        p_rgh   0.1;
-        p       0.1;
+//         rho         1;
+//         p_rgh       0.7;
+    }
+
+    equations
+    {
+//         U           0.3;
+//         "(h|e)"     0.3;
+//         k           0.3;
+//         epsilon     0.3;
     }
 }
 

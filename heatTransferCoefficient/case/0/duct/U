@@ -13,7 +13,7 @@ FoamFile
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-// Uinlet          (0 0 20);
+Uinlet          (0 0 20);
 
 dimensions      [0 1 -1 0 0 0 0];
 
@@ -23,15 +23,15 @@ boundaryField
 {
     inlet
     {
-        // type            fixedValue;
-        // value           uniform $Uinlet;
+//         type            fixedValue;
+//         value           uniform $Uinlet;
         type            flowRateInletVelocity;
         meanVelocity    20;
-        // meanVelocity    table
-        // (
-        //     (   0   0.0)
-        //     (1000  20.0)
-        // );
+//         meanVelocity    table
+//         (
+//             (   0   0.0)
+//             (1000  20.0)
+//         );
         profile         turbulentBL;
     }
 
@@ -41,7 +41,7 @@ boundaryField
         value           $internalField;
     }
 
-    wall
+    duct_to_pipe
     {
         type            noSlip;
     }

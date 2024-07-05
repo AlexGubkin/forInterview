@@ -18,11 +18,14 @@ thermoType
     type            heRhoThermo;
     mixture         pureMixture;
     transport       sutherland;
+//     transport       const;
     thermo          janaf;
-    // equationOfState PengRobinsonGas;
-    equationOfState perfectGas;
+//     thermo          hConst;
+    equationOfState PengRobinsonGas;
+//     equationOfState perfectGas;
     specie          specie;
     energy          sensibleInternalEnergy;
+//     energy          sensibleEnthalpy;
 }
 
 mixture
@@ -34,11 +37,11 @@ mixture
     }
     equationOfState
     {
-        // Tc          304.128;
-        // Vc          0.09412;
-        // Pc          7.3773e6;
-        // omega       0.228;
-        R               188.92;
+        Tc          304.128;
+        Vc          0.09412;
+        Pc          7.3773e6;
+        omega       0.228;
+//         R               188.92;
     }
     thermodynamics
     {
@@ -46,23 +49,23 @@ mixture
         Thigh           5000;
         Tcommon         1000;
         highCpCoeffs    ( 3.85746 0.00441437 -2.21481e-06 5.2349e-10 -4.72084e-14 -48759.2 2.27164 );
-        lowCpCoeffs     ( 2.35677 0.0089846 -7.12356e-06 2.45919e-09 -1.437e-13 -48372 9.90105 );
+        lowCpCoeffs     ( 2.35677 0.0089846 -7.12356e-06 2.45919e-09 -1.437e-13 -48372.0 9.90105 );
     }
     transport
     {
         As              1.67212e-06;
         Ts              170.6;
     }
-    // thermodynamics
-    // {
-    //     Cv          4150;       // [J/kg/K]
-    //     Hf          0;
-    // }
-    // transport
-    // {
-    //     mu          1.0005e-3;  // [kg/m/s]
-    //     Pr          6.31;
-    // }
+//     thermodynamics
+//     {
+//         Cp          4150;       // [J/kg/K]
+//         Hf          0;
+//     }
+//     transport
+//     {
+//         mu          1.0005e-3;  // [kg/m/s]
+//         Pr          6.31;
+//     }
 }
 
 

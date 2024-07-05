@@ -22,18 +22,21 @@ boundaryField
     inlet
     {
         type            fixedFluxPressure;
-        value           uniform 0;
+        value           $internalField;
     }
 
     outlet
     {
-        type            fixedValue;
-        value           $internalField;
+//         type            fixedValue;
+//         value           $internalField;
+        type            totalPressure;
+        p0              uniform 4e6;
     }
 
-    wall
+    duct_to_pipe
     {
-        $inlet;
+        type            fixedFluxPressure;
+        value           $internalField;
     }
 
     #includeEtc "caseDicts/setConstraintTypes"

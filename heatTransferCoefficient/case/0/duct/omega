@@ -33,7 +33,7 @@ boundaryField
         value           $internalField;
     }
 
-    wall
+    ".*"
     {
         type            omegaWallFunction;
         value           $internalField;

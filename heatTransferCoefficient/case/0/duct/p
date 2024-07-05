@@ -19,21 +19,10 @@ internalField   uniform 4e6;
 
 boundaryField
 {
-    inlet
+    ".*"
     {
         type            calculated;
         value           $internalField;
-    }
-
-    outlet
-    {
-        type            calculated;
-        value           $internalField;
-    }
-
-    wall
-    {
-        $inlet;
     }
 
     #includeEtc "caseDicts/setConstraintTypes"

@@ -19,13 +19,19 @@ internalField   uniform 0;
 
 boundaryField
 {
-    "(inlet|outlet)"
+    inlet
     {
         type            calculated;
         value           uniform 0;
     }
 
-    wall
+    outlet
+    {
+        type            calculated;
+        value           uniform 0;
+    }
+
+    ".*"
     {
         type            nutkWallFunction;
         value           uniform 0;
