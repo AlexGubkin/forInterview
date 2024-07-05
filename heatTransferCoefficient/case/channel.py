@@ -16,7 +16,9 @@ channelSize = [8, 15, 400]
 tubeThikness = 1
 
 ductMeshMinSize = 0.25
-ductMeshMaxSize = 0.5
+ductMeshMaxSize = 0.4
+pipeMeshMinSize = 0.25
+pipeMeshMaxSize = 0.25
 
 ###
 ### GEOM component
@@ -114,6 +116,22 @@ inlet = geompy.CreateGroup(pipeWithDuct, geompy.ShapeType["FACE"])
 geompy.UnionIDs(inlet, inletIDs)
 
 geompy.addToStudyInFather(pipeWithDuct, inlet, 'inlet')
+
+inletEdgesIDs =\
+    geompy.GetShapesOnShapeIDs(
+        geompy.MakeTranslation(
+            geompy.MakeBoxDXDYDZ(channelSize[0], channelSize[1], channelSize[2]),
+            -0.5*channelSize[0], -0.5*channelSize[1], -channelSize[2]
+        ),
+        pipeWithDuct,
+        geompy.ShapeType["EDGE"],
+        GEOM.ST_ON
+    )
+
+inletEdges = geompy.CreateGroup(pipeWithDuct, geompy.ShapeType["EDGE"])
+geompy.UnionIDs(inletEdges, inletEdgesIDs)
+
+geompy.addToStudyInFather(pipeWithDuct, inletEdges, 'inletEdges')
 
 outletIDs =\
     geompy.GetShapesOnShapeIDs(
@@ -239,12 +257,12 @@ NETGEN_2D_Parameters_1.SetUseDelauney( 0 )
 NETGEN_2D_Parameters_1.SetQuadAllowed( 1 )
 NETGEN_2D_Parameters_1.SetWorstElemMeasure( 32767 )
 NETGEN_2D_Parameters_1.SetCheckChartBoundary( 0 )
-Viscous_Layers_2D_1 = NETGEN_1D_2D.ViscousLayers2D(0.5,5,1.1,[],1)
+Viscous_Layers_2D_1 = NETGEN_1D_2D.ViscousLayers2D(0.8, 20, 1.2, inletEdgesIDs, 0)
 
 NETGEN_1D_2D_1 = pipeWithDuctMesh.Triangle(algo=smeshBuilder.NETGEN_1D2D,geom=inletEndFace)
 NETGEN_2D_Parameters_2 = NETGEN_1D_2D_1.Parameters()
-NETGEN_2D_Parameters_2.SetMinSize( 0.25 )
-NETGEN_2D_Parameters_2.SetMaxSize( 0.25 )
+NETGEN_2D_Parameters_2.SetMinSize( pipeMeshMinSize )
+NETGEN_2D_Parameters_2.SetMaxSize( pipeMeshMaxSize )
 NETGEN_2D_Parameters_2.SetSecondOrder( 0 )
 NETGEN_2D_Parameters_2.SetOptimize( 1 )
 NETGEN_2D_Parameters_2.SetFineness( 4 )
@@ -256,6 +274,7 @@ NETGEN_2D_Parameters_2.SetUseDelauney( 0 )
 NETGEN_2D_Parameters_2.SetQuadAllowed( 0 )
 NETGEN_2D_Parameters_1.SetWorstElemMeasure( 32767 )
 NETGEN_2D_Parameters_1.SetCheckChartBoundary( 0 )
+Viscous_Layers_2D_2 = NETGEN_1D_2D_1.ViscousLayers2D(0.25, 5, 1.2, inletEdgesIDs, 0)
 
 isDone = pipeWithDuctMesh.Compute()
 

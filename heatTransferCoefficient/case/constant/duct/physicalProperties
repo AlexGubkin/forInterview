@@ -19,7 +19,8 @@ thermoType
     mixture         pureMixture;
     transport       sutherland;
     thermo          janaf;
-    equationOfState PengRobinsonGas;
+    // equationOfState PengRobinsonGas;
+    equationOfState perfectGas;
     specie          specie;
     energy          sensibleInternalEnergy;
 }
@@ -33,10 +34,11 @@ mixture
     }
     equationOfState
     {
-        Tc          304.128;
-        Vc          0.09412;
-        Pc          7.3773e6;
-        omega       0.228;
+        // Tc          304.128;
+        // Vc          0.09412;
+        // Pc          7.3773e6;
+        // omega       0.228;
+        R               188.92;
     }
     thermodynamics
     {
