@@ -231,7 +231,7 @@ smesh = smeshBuilder.New()
 pipeWithDuctMesh = smesh.Mesh(pipeWithDuct,'pipeWithDuctMesh')
 Prism_3D = pipeWithDuctMesh.Prism()
 Regular_1D = pipeWithDuctMesh.Segment()
-Number_of_Segments_1 = Regular_1D.NumberOfSegments(50)
+Number_of_Segments_1 = Regular_1D.NumberOfSegments(100)
 
 duct_1 = pipeWithDuctMesh.GroupOnGeom(duct,'duct',SMESH.VOLUME)
 pipe_1 = pipeWithDuctMesh.GroupOnGeom(pipe,'pipe',SMESH.VOLUME)

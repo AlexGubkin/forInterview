@@ -21,22 +21,20 @@ regionSolvers
     pipe            solid;
 }
 
-startFrom       startTime;
+// startFrom       startTime;
+startFrom       latestTime;
 
 startTime       0;
 
 stopAt          endTime;
 
-endTime         1.0;
-// endTime         100;
+endTime         10.0;
 
-deltaT          1e-8;
-// deltaT          1;
+deltaT          1e-5;
 
 writeControl    adjustableRunTime;
 
-writeInterval   0.005;
-// writeInterval   1;
+writeInterval   0.01;
 
 purgeWrite      0;
 
@@ -52,9 +50,9 @@ timePrecision   6;
 
 runTimeModifiable true;
 
-adjustTimeStep  yes;
+adjustTimeStep  true;
 
-maxCo           0.5;
+maxCo           0.35;
 
 maxDi           200;
 
@@ -89,6 +87,20 @@ functions
         region=duct,
         patch=outlet,
         field=T
+    )
+    #includeFunc patchAverage
+    (
+        name=inletVelocity,
+        region=duct,
+        patch=inlet,
+        field=U
+    )
+    #includeFunc patchAverage
+    (
+        name=outletVelocity,
+        region=duct,
+        patch=outlet,
+        field=U
     )
     kappaEff1
     {

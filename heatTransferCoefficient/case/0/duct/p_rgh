@@ -29,8 +29,8 @@ boundaryField
     {
         type            fixedValue;
         value           $internalField;
-        // type            totalPressure;
-        // p0              uniform 4e6;
+//         type            totalPressure;
+//         p0              uniform 4e6;
     }
 
     duct_to_pipe
