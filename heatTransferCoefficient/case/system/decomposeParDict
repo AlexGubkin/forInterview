@@ -8,39 +8,35 @@
 FoamFile
 {
     format      ascii;
-    class       volScalarField;
-    object      p_rgh;
+    class       dictionary;
+    location    "system";
+    object      decomposeParDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-dimensions      [1 -1 -2 0 0 0 0];
+numberOfSubdomains 4;
 
-internalField   uniform 4e6;
+method          scotch;
 
-boundaryField
+simpleCoeffs
 {
-    inlet
-    {
-        type            fixedFluxPressure;
-        value           $internalField;
-    }
-
-    outlet
-    {
-        type            fixedValue;
-        value           $internalField;
-        // type            totalPressure;
-        // p0              uniform 4e6;
-    }
-
-    duct_to_pipe
-    {
-        type            fixedFluxPressure;
-        value           $internalField;
-    }
-
-    #includeEtc "caseDicts/setConstraintTypes"
+    n               (2 2 1);
 }
+
+hierarchicalCoeffs
+{
+    n               (1 1 1);
+    order           xyz;
+}
+
+manualCoeffs
+{
+    dataFile        "";
+}
+
+distributed     no;
+
+roots           ( );
 
 
 // ************************************************************************* //

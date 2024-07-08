@@ -27,13 +27,16 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         100;
+endTime         1.0;
+// endTime         100;
 
-deltaT          1e-3;
+deltaT          1e-8;
+// deltaT          1;
 
 writeControl    adjustableRunTime;
 
-writeInterval   1;
+writeInterval   0.005;
+// writeInterval   1;
 
 purgeWrite      0;
 
@@ -51,28 +54,60 @@ runTimeModifiable true;
 
 adjustTimeStep  yes;
 
-maxCo           5;
+maxCo           0.5;
 
 maxDi           200;
 
-maxDeltaT       1;
+maxDeltaT       0.005;
 
 functions
 {
-    // #includeFunc patchAverage
-    // (
-    //     name=cylinderT,
-    //     region=fluid,
-    //     patch=fluid_to_solid,
-    //     field=T
-    // )
-    // #includeFunc patchAverage
-    // (
-    //     name=inletU,
-    //     region=fluid,
-    //     patch=inlet,
-    //     field=U
-    // )
+    #includeFunc patchAverage
+    (
+        name=inletPressure,
+        region=duct,
+        patch=inlet,
+        field=p
+    )
+    #includeFunc patchAverage
+    (
+        name=outletPressure,
+        region=duct,
+        patch=outlet,
+        field=p
+    )
+    #includeFunc patchAverage
+    (
+        name=inletTemperature,
+        region=duct,
+        patch=inlet,
+        field=T
+    )
+    #includeFunc patchAverage
+    (
+        name=outletTemperature,
+        region=duct,
+        patch=outlet,
+        field=T
+    )
+    kappaEff1
+    {
+        type            wallHeatTransferCoeff;
+        libs            ("libfieldFunctionObjects.so");
+        writeControl    writeTime;
+        model           kappaEff;
+        region          duct;
+        patches         (duct_to_pipe);
+        Pr              0.732;
+        Prt             0.85;
+    }
+    yPlus1
+    {
+        type            yPlus;
+        libs            ("libfieldFunctionObjects.so");
+        writeControl    writeTime;
+        region          duct;
+    }
 }
 
 

@@ -3,11 +3,19 @@
 
 runApplication -o ideasUnvToFoam pipeWithDuct.unv
 
+runApplication -o transformPoints "scale=(0.001 0.001 0.001)"
+
 runApplication -o splitMeshRegions -cellZones -overwrite
 
 paraFoam -region duct -touch
 paraFoam -region pipe -touch
 
-runApplication $(getApplication)
+runApplication -s duct  decomposePar -region duct
+runApplication -s pipe  decomposePar -region pipe
+
+runParallel $(getApplication)
+
+runApplication -s duct  reconstructPar -region duct
+runApplication -s pipe  reconstructPar -region pipe
 
 #------------------------------------------------------------------------------

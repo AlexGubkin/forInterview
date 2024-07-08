@@ -107,11 +107,15 @@
         \[
             \begin{aligned}
                 &\begin{aligned}
-                    &\symbf{\nabla} \cdot \symbf{\rho u} = 0 \\
-                    &\symbf{\nabla} \cdot \rho \symbf{u} \otimes \symbf{u}
+                    &\frac{\partial \rho}{\partial t} + \symbf{\nabla} \cdot \symbf{\rho u} = 0 \\
+                    &\frac{\partial \rho \symbf{u}}{\partial t} + \symbf{\nabla} \cdot \rho \symbf{u} \otimes \symbf{u}
                     =
                     - \symbf{\nabla} p
-                    + \symbf{\nabla} \cdot \symbf{\tau}
+                    + \symbf{\nabla} \cdot \symbf{\tau}\\
+                    &\frac{\partial \rho E}{\partial t} + \symbf{\nabla} \cdot \rho \symbf{u} E + \symbf{\nabla} \cdot \symbf{u} p
+                    =
+                    - \symbf{\nabla} \cdot \symbf{q}
+                    + \symbf{\nabla} \cdot \symbf{\tau \cdot \symbf{u}}
                 \end{aligned} \quad \symbf{x} \in \Omega_{flow} \\
                 &\begin{aligned}
                     &\symbf{u} = 0 \\

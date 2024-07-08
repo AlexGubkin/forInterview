@@ -27,10 +27,10 @@ boundaryField
 
     outlet
     {
-//         type            zeroGradient;
-        type            inletOutlet;
-        inletValue      uniform 723.15;
-        value           uniform 723.15;
+        type            zeroGradient;
+        // type            inletOutlet;
+        // inletValue      uniform 723.15;
+        // value           uniform 723.15;
     }
 
     duct_to_pipe
