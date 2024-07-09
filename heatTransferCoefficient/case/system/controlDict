@@ -28,7 +28,7 @@ startTime       0;
 
 stopAt          endTime;
 
-endTime         5;
+endTime         10;
 
 deltaT          1e-5;
 
@@ -52,7 +52,7 @@ runTimeModifiable true;
 
 adjustTimeStep  true;
 
-maxCo           0.6;
+maxCo           0.8;
 
 maxDi           200;
 
@@ -112,6 +112,7 @@ functions
         patches         (duct_to_pipe);
         Pr              0.732;
         Prt             0.85;
+        Lchar           0.001;
     }
     yPlus1
     {

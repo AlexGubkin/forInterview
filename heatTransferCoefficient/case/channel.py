@@ -264,7 +264,7 @@ Quadrangle_2D = pipeWithDuctMesh.Quadrangle(algo=smeshBuilder.QUADRANGLE, geom=i
 Quadrangle_Parameters = Quadrangle_2D.QuadrangleParameters(smeshBuilder.QUAD_STANDARD, -1, [], [])
 Regular_1D = pipeWithDuctMesh.Segment(geom=inlet)
 Local_Length = Regular_1D.LocalLength(ductMeshMinSize, None, 1e-07)
-# Viscous_Layers_2D_1 = Quadrangle_2D.ViscousLayers2D(0.2, 2, 1.1, [], 1)
+Viscous_Layers_2D_1 = Quadrangle_2D.ViscousLayers2D(0.2, 2, 1.1, [], 1)
 
 
 NETGEN_1D_2D_2 = pipeWithDuctMesh.Triangle(algo=smeshBuilder.NETGEN_1D2D,geom=inletEndFace)
@@ -283,7 +283,7 @@ NETGEN_2D_Parameters_2.SetQuadAllowed( 0 )
 NETGEN_2D_Parameters_2.SetWorstElemMeasure( 32767 )
 NETGEN_2D_Parameters_2.SetCheckChartBoundary( 0 )
 #Viscous_Layers_2D_2 = NETGEN_1D_2D_2.ViscousLayers2D(0.2, 5, 1.2, inletEdgesIDs, 0)
-# Viscous_Layers_2D_2 = NETGEN_1D_2D_2.ViscousLayers2D(0.2, 2, 1.1, [], 1)
+Viscous_Layers_2D_2 = NETGEN_1D_2D_2.ViscousLayers2D(0.2, 2, 1.1, [], 1)
 
 isDone = pipeWithDuctMesh.Compute()
 

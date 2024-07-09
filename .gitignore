@@ -304,6 +304,8 @@ dynamicCode/
 postProcessing/
 processor*/
 polyMesh/
+[0-9]*/
+[0-9]*.[0-9]*/
 
 cellToRegion
 *.OpenFOAM

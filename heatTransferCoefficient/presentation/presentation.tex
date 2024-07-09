@@ -68,12 +68,12 @@
 
         \frametitle{Задача}
 
-        Определить коэффициент теплоотдачи $ \alpha $ прямого канала длиной $ l~=~400$~мм прямоугольного сечения ширины $ w~=~15 $~мм и высоты $ h~=~8 $~мм с толщиной стенки $ \delta~=~1 $~мм при протекании через него диоксида углерода. Скорость и температура газа на входе в канал соответственно $ u_{inlet}~=~20 $~м/с, $ T_{inlet}~=~423.15 $~К. Давление на выходе из канала $ p_{outlet}~=~4 $~МПа. Канал обменевается энергией с внешней средой при температуре $ T_{ext}~=~723.15 $~К с коэффициентом теплоотдачи $ \alpha_{ext}~=~1000 $~Вт/м$^2$К.
+        Определить коэффициент теплоотдачи $ \tilde{\alpha} $ прямого канала длиной $ l~=~400$~мм прямоугольного сечения ширины $ w~=~15 $~мм и высоты $ h~=~8 $~мм с толщиной стенки $ \delta_{wall}~=~1 $~мм при протекании через него диоксида углерода. Скорость и температура газа на входе в канал соответственно $ u_{inlet}~=~20 $~м/с, $ T_{inlet}~=~423.15 $~К. Давление на выходе из канала $ p_{outlet}~=~4 $~МПа. Канал обменевается энергией с внешней средой при температуре $ T_{ext}~=~723.15 $~К с коэффициентом теплоотдачи $ \alpha_{ext}~=~1000 $~Вт/м$^2$К.
 
-    \end{frame}{}
+    \end{frame}
 
     %SLIDE #
-    \begin{frame}{}
+    \begin{frame}
 
         %\transdissolve[duration=0.1]
         \justifying
@@ -94,7 +94,7 @@
             \end{figure}
         \end{minipage}
 
-    \end{frame}{}
+    \end{frame}
 
     %SLIDE #
     \begin{frame}{}
@@ -138,7 +138,7 @@
             \kappa = 0.37464 + 1.54226 \omega - 0.26992 \omega^{2}
         \]
 
-    \end{frame}{}
+    \end{frame}
 
     %SLIDE #
     \begin{frame}{}
@@ -157,7 +157,7 @@
             \delta = \delta_{T} \approx \frac{0.37 x}{Re^{\frac{1}{5}}_{x}} = \left. \frac{0.37 x}{\left( \frac{u_{0} x}{\nu} \right)^{\frac{1}{5}}} \right|_{x = l} = \frac{0.37 x}{\left( \frac{20 \cdot 0.4}{1.5 \cdot 10^{-5}} \right)^{\frac{1}{5}}} = \approx 0.011
         \]
 
-    \end{frame}{}
+    \end{frame}
 
     %SLIDE #
     \begin{frame}{}
@@ -192,7 +192,7 @@
             \frac{\partial \rho_{s} c_{s} T}{\partial t} + \symbf{\nabla} \cdot \lambda_{s} \symbf{\nabla} T = 0 \quad \symbf{x} \in \Omega_{Solid}
         \]
 
-    \end{frame}{}
+    \end{frame}
 
     %SLIDE #
     \begin{frame}[fragile]
@@ -265,7 +265,7 @@ thermodynamics
             C_{1 \varepsilon} = 1.44, \; C_{2 \varepsilon} = 1.92, \; C_{\mu} = 0.09, \; \sigma_{k} = 1.0, \; \sigma_{\varepsilon} = 1.3
         \]
 
-    \end{frame}{}
+    \end{frame}
 
     %SLIDE #
     \begin{frame}{}
@@ -274,24 +274,71 @@ thermodynamics
         \justifying
         \normalsize
 
-        \frametitle{Граничные условия}
+        \frametitle{Сетка}
+        
+        Общее количество контрольных объемов 416400. Количество контрольных объемов в области течения и стенке соответственно 228800 и 187600. Гексаэдров: 308800. Призм: 107600.
+
+        \begin{minipage}{0.45\linewidth}
+            \begin{figure}
+                \centering
+                \includegraphics[scale=0.08]{mesh1}
+            \end{figure}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{0.45\linewidth}
+            \begin{figure}
+                \centering
+                \includegraphics[scale=0.08]{mesh2}
+            \end{figure}
+        \end{minipage}
+
+    \end{frame}
+    
+%    %SLIDE #
+%    \begin{frame}{}
+%
+%        %\transdissolve[duration=0.1]
+%        \justifying
+%        \normalsize
+%
+%        \frametitle{Граничные условия}
+%
+%        \[
+%            \begin{aligned}
+%                &\begin{aligned}
+%                    &\symbf{u} = 0 \\
+%                    \symbf{\nabla} &p = 0
+%                \end{aligned} \quad \symbf{x} \in \partial \Omega_{wall} \\
+%                &\begin{aligned}
+%                    \symbf{\nabla} &\symbf{u} = 0 \\
+%                    &p = p_{1}
+%                \end{aligned} \quad \symbf{x} \in \partial \Omega_{inlet} \\
+%                &\begin{aligned}
+%                    \symbf{\nabla} &\symbf{u} = 0 \\
+%                    &p = p_{2}
+%                \end{aligned} \quad \symbf{x} \in \partial \Omega_{outlet}
+%            \end{aligned}
+%        \]
+%
+%    \end{frame}
+
+    %SLIDE #
+    \begin{frame}{}
+
+        %\transdissolve[duration=0.1]
+        \justifying
+        \normalsize
+
+        \frametitle{Расчет коэффициента теплоотдачи}
 
         \[
-            \begin{aligned}
-                &\begin{aligned}
-                    &\symbf{u} = 0 \\
-                    \symbf{\nabla} &p = 0
-                \end{aligned} \quad \symbf{x} \in \partial \Omega_{wall} \\
-                &\begin{aligned}
-                    \symbf{\nabla} &\symbf{u} = 0 \\
-                    &p = p_{1}
-                \end{aligned} \quad \symbf{x} \in \partial \Omega_{in} \\
-                &\begin{aligned}
-                    \symbf{\nabla} &\symbf{u} = 0 \\
-                    &p = p_{2}
-                \end{aligned} \quad \symbf{x} \in \partial \Omega_{out}
-            \end{aligned}
+            \alpha = \frac{\rho c_{p}}{\delta_{wall}} \left( \frac{\nu}{\textsf{Pr}} + \frac{\nu_{t}}{\textsf{Pr}_{t}} \right)
         \]
 
-    \end{frame}{}
+        \[
+            \tilde{\alpha} = \frac{1}{S_{wall}} \int\limits_{S_{wall}} \alpha \approx 141.27 \; \frac{\mbox{Вт}}{\mbox{м}^2 \: \mbox{К}}
+        \]
+
+    \end{frame}
+
 \end{document}
