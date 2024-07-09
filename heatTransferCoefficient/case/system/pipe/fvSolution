@@ -19,7 +19,11 @@ solvers
     {
         solver           PCG;
         preconditioner   DIC;
-        tolerance        1e-08;
+
+        // solver           GAMG;
+        // smoother         GaussSeidel;
+
+        tolerance        1e-8;
         relTol           0;
     }
 
@@ -32,7 +36,7 @@ solvers
 
 PIMPLE
 {
-    nNonOrthogonalCorrectors 1;
+    nNonOrthogonalCorrectors 0;
 }
 
 relaxationFactors

@@ -35,7 +35,7 @@
 \usepackage{subcaption}
 \usepackage[font=small,labelfont=bf]{caption}
 \usepackage{svg}
-\usepackage{verbatim}
+\usepackage{listings}
 
 \usepackage{tikz}
 %\usetikzlibrary{
@@ -118,7 +118,7 @@
         \[
             A = \frac{\alpha a p}{R^{2} T^{2}}, \: B = \frac{b p}{R T}
         \]
-        
+
         \[
             a = \Omega_{a} \frac{R^{2} T^{2}_{c}}{p_{c}}, \:
             \Omega_{a} = \frac{8 + 40 \eta_{c}}{49 - 37 \eta_{c}}
@@ -195,7 +195,7 @@
     \end{frame}{}
 
     %SLIDE #
-    \begin{frame}{}
+    \begin{frame}[fragile]
 
         %\transdissolve[duration=0.1]
         \justifying
@@ -218,8 +218,20 @@
         \[
             c_{p} = ((((a_{4} T + a_{3}) T + a_{2}) T + a_{1}) T + a_{0}) + c_{p, eos}
         \]
+        {\centering\scriptsize
+        \begin{lstlisting}
+thermodynamics
+{
+    Tlow            0;
+    Thigh           5000;
+    Tcommon         1000;
+    highCpCoeffs    (3.85746 0.00441437 -2.21481e-06 5.2349e-10 -4.72084e-14 -48759.2 2.27164);
+    lowCpCoeffs     (2.35677 0.0089846 -7.12356e-06 2.45919e-09 -1.437e-13 -48372.0 9.90105);
+}
+        \end{lstlisting}
+        }
 
-    \end{frame}{}
+    \end{frame}
 
     %SLIDE #
     \begin{frame}{}

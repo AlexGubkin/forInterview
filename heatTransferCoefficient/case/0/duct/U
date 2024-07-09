@@ -23,21 +23,23 @@ boundaryField
 {
     inlet
     {
-//         type            fixedValue;
-//         value           uniform $Uinlet;
+        // type            fixedValue;
+        // value           uniform $Uinlet;
         type            flowRateInletVelocity;
         meanVelocity    20;
-//         meanVelocity    table
-//         (
-//             (   0   0.0)
-//             (1000  20.0)
-//         );
+        // meanVelocity    table
+        // (
+        //     (   0   0.0)
+        //     (1000  20.0)
+        // );
         profile         turbulentBL;
     }
 
     outlet
     {
+        // type            zeroGradient;
         type            pressureInletOutletVelocity;
+        tangentialVelocity uniform (0 0 0);
         value           $internalField;
     }
 
