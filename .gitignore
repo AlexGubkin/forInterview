@@ -307,6 +307,7 @@ polyMesh/
 [0-9]*/
 [0-9]*.[0-9]*/
 block_[0-9]/
+.ipynb_checkpoints/
 
 cellToRegion
 *.OpenFOAM
