@@ -306,8 +306,10 @@ processor*/
 polyMesh/
 [0-9]*/
 [0-9]*.[0-9]*/
+block_[0-9]/
 
 cellToRegion
 *.OpenFOAM
 log.*
+*.log
 *.unv
